@@ -17,7 +17,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- begin::Head -->
 	<head>
 		<meta charset="utf-8" />
-		<title>Metronic | Login Page v6</title>
+		<title>BFTT团队博客</title>
 		<meta name="description" content="Login page example">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -85,7 +85,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="/assets/demo/default/skins/aside/dark.css" rel="stylesheet" type="text/css" />
 
 		<!--end::Layout Skins -->
-		<link rel="shortcut icon" href="../assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="/assets/images/logo.jpg" />
 	</head>
 
 	<!-- end::Head -->
@@ -103,12 +103,13 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="kt-login__body">
 									<div class="kt-login__logo">
 										<a href="#">
-											<img src="../assets/media/company-logos/logo-2.png">
+											<%--<img src="/assets/media/company-logos/logo-2.png">--%>
+												<img src="/assets/images/logo.jpg" style="width: 70px;height: 70px">
 										</a>
 									</div>
 									<div class="kt-login__signin">
 										<div class="kt-login__head">
-											<h3 class="kt-login__title">Sign In To team-blog</h3>
+											<h3 class="kt-login__title">Sign In To BFTT</h3>
 										</div>
 										<div class="kt-login__form">
 											<form class="kt-form" action="">
@@ -139,23 +140,15 @@ License: You must have a valid license purchased only from themeforest(the above
 										<div class="kt-login__form">
 											<form class="kt-form" action="">
 												<div class="form-group">
-													<input class="form-control" type="text" placeholder="昵称" name="nickname">
+													<input id="setup_nickname" class="form-control" type="text" placeholder="昵称" name="nickname">
 												</div>
 												<div class="form-group">
-													<input class="form-control" type="text" placeholder="邮箱" name="email" autocomplete="off">
+													<input id="setup_email" class="form-control" type="text" placeholder="邮箱" name="email" autocomplete="off">
 												</div>
 												<div class="form-group">
-													<input class="form-control" type="password" placeholder="密码" name="password">
+													<input id="setup_password" class="form-control" type="password" placeholder="密码" name="password">
 												</div>
-												<div class="form-group">
-													<input class="form-control form-control-last" type="password" placeholder="再次输入密码" name="rpassword">
-												</div>
-												<div class="kt-login__extra">
-													<label class="kt-checkbox">
-														<input type="checkbox" name="agree"> I Agree the <a href="#">terms and conditions</a>.
-														<span></span>
-													</label>
-												</div>
+												
 												<div class="kt-login__actions">
 													<button id="kt_login_signup_submit" class="btn btn-brand btn-pill btn-elevate">Sign Up</button>
 													<button id="kt_login_signup_cancel" class="btn btn-outline-brand btn-pill">Cancel</button>
@@ -190,12 +183,13 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 					</div>
-					<div class="kt-grid__item kt-grid__item--fluid kt-grid__item--center kt-grid kt-grid--ver kt-login__content" style="background-image: url(../assets/media//bg/bg-4.jpg);">
+					<div class="kt-grid__item kt-grid__item--fluid kt-grid__item--center kt-grid kt-grid--ver kt-login__content" style="background-image: url(/assets/media//bg/bg-4.jpg);">
 						<div class="kt-login__section">
 							<div class="kt-login__block">
-								<h3 class="kt-login__title">Join us</h3>
+								<h3 class="kt-login__title">团队文章共享系统</h3>
 								<div class="kt-login__desc">
-									<br>欢迎加入team-blog</br>
+									<br>加入我们</br>
+									<br>让你的团队开发更快捷</br>
 								</div>
 							</div>
 						</div>
@@ -311,7 +305,36 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<!--begin::Global App Bundle(used by all pages) -->
 		<script src="/assets/app/bundle/app.bundle.js" type="text/javascript"></script>
+		<script>
+            $(function () {
+                setup();
+            })
 
+            function setup() {
+                $('#kt_login_signup_submit').click(function () {
+                    setup_nickname = $("#setup_nickname").val();
+                    setup_email = $("#setup_email").val();
+                    setup_password = $("#setup_password").val();
+                    $.ajax({
+                            url:'/identify/setup.do',
+                            data:{nickname:setup_nickname,email:setup_email,password:setup_password},
+                            type:'post',
+							 dataType:"json",
+                            success:function (data) {
+								if (data.status==true){
+								    alert("注册成功");
+								}
+								if(data.status==false){
+                                    alert("邮箱已被使用，请重新注册");
+								}
+                            }
+                        }
+                    )
+                })
+
+            }
+
+		</script>
 		<!--end::Global App Bundle -->
 	</body>
 
