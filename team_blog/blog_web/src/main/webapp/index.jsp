@@ -2,6 +2,6 @@
 <html>
 <body>
 <h2>Hello World!</h2>
-<a href="${pageContext.request.contextPath}/identify/login.do">登录</a>
+<a href="${pageContext.request.contextPath}/identify/tologin.do">登录</a>
 </body>
 </html>

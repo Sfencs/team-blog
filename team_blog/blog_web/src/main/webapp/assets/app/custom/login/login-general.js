@@ -90,22 +90,46 @@ var KTLoginGeneral = function() {
                 return;
             }
 
-            btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
+            var login_email = $("#login_email").val();
+            var login_password = $("#login_password").val();
+            $.ajax({
+                    url:'/identify/login.do',
+                    data:{email:login_email,password:login_password},
+                    type:'post',
+                    dataType:"json",
 
-            form.ajaxSubmit({
-                url: '',
-                success: function(response, status, xhr, $form) {
-                	// similate 2s delay
-                	setTimeout(function() {
-	                    btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-	                    showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
-                    }, 2000);
+                    success:function (data) {
+
+                        console.log(data);
+                        if (data.status==true){
+
+                            alert(data.message);
+                        }
+                        if(data.status==false){
+
+                            alert(data.message);
+                        }
+                    }
                 }
-            });
+            )
+
+            // btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
+            //
+            // form.ajaxSubmit({
+            //     url: '',
+            //     success: function(response, status, xhr, $form) {
+            //     	// similate 2s delay
+            //     	setTimeout(function() {
+	        //             btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+	        //             showErrorMsg(form, 'danger', 'Incorrect username or password. Please try again.');
+            //         }, 2000);
+            //     }
+            // });
         });
     }
 
     var handleSignUpFormSubmit = function() {
+
         $('#kt_login_signup_submit').click(function(e) {
             e.preventDefault();
 
@@ -137,27 +161,55 @@ var KTLoginGeneral = function() {
                 return;
             }
 
-            btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
+            // btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
+
+
+                    var setup_nickname = $("#setup_nickname").val();
+                    var setup_email = $("#setup_email").val();
+                    var setup_password = $("#setup_password").val();
+
+                    $.ajax({
+                            url:'/identify/setup.do',
+                            data:{nickname:setup_nickname,email:setup_email,password:setup_password},
+                            type:'post',
+                            dataType:"json",
+                            success:function (data) {
+                                if (data.status==true){
+
+                                    alert("注册成功");
+                                    displaySignInForm();
+                                }
+                                if(data.status==false){
+
+                                    alert("邮箱已被使用，请重新注册");
+                                }
+                            }
+                        }
+                    )
+
+
+
+
 
             form.ajaxSubmit({
                 url: '',
                 success: function(response, status, xhr, $form) {
-                	// similate 2s delay
-                	setTimeout(function() {
-	                    btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-	                    form.clearForm();
-	                    form.validate().resetForm();
+                	//similate 2s delay
+                    //            	 setTimeout(function() {
+                 	                    //  btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+                	                     // form.clearForm();
+                	                     // form.validate().resetForm();
 
-	                    // display signup form
-	                    displaySignInForm();
-	                    var signInForm = login.find('.kt-login__signin form');
-	                    signInForm.clearForm();
-	                    signInForm.validate().resetForm();
+                 	                    // display signup form
+                 	                    //  displaySignInForm();
+                                    // var signInForm = login.find('.kt-login__signin form');
+                	                //     signInForm.clearForm();
+                	                //     signInForm.validate().resetForm();
 
-	                    showErrorMsg(signInForm, 'success', 'Thank you. To complete your registration please check your email.');
-	                }, 2000);
-                }
-            });
+                	                    // showErrorMsg(signInForm, 'success', 'Thank you. To complete your registration please check your email.');
+                	                  // }, 2000);
+                                }
+                             });
         });
     }
 

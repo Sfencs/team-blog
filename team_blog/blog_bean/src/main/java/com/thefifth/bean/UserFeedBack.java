@@ -1,10 +1,9 @@
 package com.thefifth.bean;
 
-public class ArticleCollection {
+public class UserFeedBack {
     private int id;
     private int user_id;
-    private int article_id;
-
+    private String message;
 
     public int getId() {
         return id;
@@ -22,20 +21,20 @@ public class ArticleCollection {
         this.user_id = user_id;
     }
 
-    public int getArticle_id() {
-        return article_id;
+    public String getMessage() {
+        return message;
     }
 
-    public void setArticle_id(int article_id) {
-        this.article_id = article_id;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     @Override
     public String toString() {
-        return "Collection{" +
+        return "UserFeedBack{" +
                 "id=" + id +
                 ", user_id=" + user_id +
-                ", article_id=" + article_id +
+                ", message='" + message + '\'' +
                 '}';
     }
 }

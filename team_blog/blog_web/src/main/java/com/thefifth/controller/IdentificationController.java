@@ -21,8 +21,8 @@ public class IdentificationController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping("/login.do")
-    public ModelAndView login(){
+    @RequestMapping("/tologin.do")
+    public ModelAndView tologin(){
         ModelAndView mv = new ModelAndView();
         mv.setViewName("login");
         return mv;
@@ -40,6 +40,19 @@ public class IdentificationController {
             String result_str = gson.toJson(result);
             return result_str;
 
+
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/login.do",produces = "application/json; charset=utf-8")
+    public String login(UserInfo user,String password){
+        String ss=DigestUtils.md5DigestAsHex(password.getBytes());
+        user.setPassword_hash(ss);
+        HashMap map = userService.login(user);
+        Gson gson = new GsonBuilder().create();
+        String result_str = gson.toJson(map);
+        System.out.println(result_str);
+        return result_str;
 
     }
 }

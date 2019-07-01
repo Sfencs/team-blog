@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thefifth.dao.IBackendManagerDao" >
+
+
+    <select id="findAllByBm" resultType="com.thefifth.bean.BackendManager">
+        select * from backendmanager
+    </select>
+
+    <select id="login" parameterType="com.thefifth.bean.BackendManager" resultType="com.thefifth.bean.BackendManager">
+        select * from backendmanager where username =#{username} and password =#{password}
+    </select>
+
+    <delete id="deleteBackendManager" >
+        delete from where id=#{id}
+    </delete>
+
+    <select id="findAllByUi" resultType="com.thefifth.bean.UserInfo">
+        select * from uersinfo
+    </select>
+
+    <select id="findAllByTeam" resultType="com.thefifth.bean.Team">
+        select * from team
+    </select>
+
+    <select id="findAllByArticle" resultType="com.thefifth.bean.Article">
+        select * from article
+    </select>
+</mapper>

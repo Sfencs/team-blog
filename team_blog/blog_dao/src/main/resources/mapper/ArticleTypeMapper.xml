@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thefifth.dao.IUserDao">
+
+    <insert id="addArticleType">
+        insert into teamarticletype(type,team_id)
+        values (#{type},#{team_id})
+    </insert>
+
+    <delete id="deleteArticleType">
+        delete from teamarticletype where id=#{id}
+    </delete>
+
+    <insert id="setArticleType">
+         insert into articleType(article_id,type_id)
+         values (#{article_id},#{type_id})
+    </insert>
+
+
+</mapper>

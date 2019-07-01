@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thefifth.dao.ICommentDao" >
+
+    <insert id="addComment" parameterType="com.thefifth.bean.Comment">
+        insert into comment(parent_id,reviewer_id,content,is_delete,createtime)
+        values(#{parent_id},#{reviewer_id},#{content},#{is_delete},#{createtime})
+    </insert>
+
+    <select id="checkFirstComment" parameterType="int" resultType="com.thefifth.bean.Comment">
+        select * from comment where article_id=#{article_id}
+    </select>
+
+    <select id="checkCommentReply" resultType="com.thefifth.bean.Comment">
+        select * from comment where article_id=#{article_id} and parent_id=#{parent_id}
+    </select>
+
+    <delete id="deleteComment" parameterType="int" >
+        delete comment where id=#{comment_id}
+    </delete>
+
+</mapper>

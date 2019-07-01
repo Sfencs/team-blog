@@ -9,4 +9,19 @@
         values(#{nickname},#{password_hash},#{email},#{createtime},#{gravatar})
     </insert>
 
+    <select id="findOneByEmailAndPasswordHash" resultType="com.thefifth.bean.UserInfo">
+    select * from userinfo where email=#{email} and password_hash=#{password_hash}
+    </select>
+    <select id="findOneById" resultType="com.thefifth.bean.UserInfo">
+    select * from userinfo where id=#{id}
+    </select>
+
+    <insert id="insertUserFeedback">
+        insert into userfeedback(user_id,message)
+        values(#{user_id},#{message})
+    </insert>
+
+    <update id="updateUserInfo">
+        update userinfo set nickname=#{nickname},telphone=#{telphone},sex=#{sex} where id=#{id}
+    </update>
 </mapper>

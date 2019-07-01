@@ -9,6 +9,7 @@ import org.springframework.util.DigestUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -32,5 +33,21 @@ public class UserServiceImpl implements IUserService {
             return false;
         }
 
+    }
+
+    @Override
+    public HashMap login(UserInfo user) {
+        List<UserInfo> userInfos =  userDao.findOneByEmailAndPasswordHash(user);
+        HashMap map = new HashMap();
+        if (userInfos.size()>0) {
+            map.put("status",true);
+            map.put("message","登陆成功");
+        }
+        else {
+
+            map.put("status",false);
+            map.put("message","邮箱或密码错误");
+        }
+        return map;
     }
 }

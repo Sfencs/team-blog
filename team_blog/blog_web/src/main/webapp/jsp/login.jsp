@@ -114,10 +114,10 @@ License: You must have a valid license purchased only from themeforest(the above
 										<div class="kt-login__form">
 											<form class="kt-form" action="">
 												<div class="form-group">
-													<input class="form-control" type="text" placeholder="邮箱" name="email" autocomplete="off">
+													<input id="login_email" class="form-control" type="text" placeholder="邮箱" name="email" autocomplete="off">
 												</div>
 												<div class="form-group">
-													<input class="form-control form-control-last" type="password" placeholder="密码" name="password">
+													<input id="login_password" class="form-control form-control-last" type="password" placeholder="密码" name="password">
 												</div>
 												<div class="kt-login__extra">
 													<label class="kt-checkbox">
@@ -307,32 +307,63 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="/assets/app/bundle/app.bundle.js" type="text/javascript"></script>
 		<script>
             $(function () {
-                setup();
+                // setup();
+				//login();
             })
-
-            function setup() {
-                $('#kt_login_signup_submit').click(function () {
-                    setup_nickname = $("#setup_nickname").val();
-                    setup_email = $("#setup_email").val();
-                    setup_password = $("#setup_password").val();
-                    $.ajax({
-                            url:'/identify/setup.do',
-                            data:{nickname:setup_nickname,email:setup_email,password:setup_password},
-                            type:'post',
-							 dataType:"json",
-                            success:function (data) {
-								if (data.status==true){
-								    alert("注册成功");
-								}
-								if(data.status==false){
-                                    alert("邮箱已被使用，请重新注册");
-								}
-                            }
-                        }
-                    )
-                })
-
-            }
+				// function login() {
+                // $('#kt_login_signin_submit').click(function () {
+                //             login_email = $("#login_email").val();
+                //             login_password = $("#login_password").val();
+                //     			$.ajax({
+                //                         url:'/identify/login.do',
+                //                         data:{email:login_email,password:login_password},
+                //                         type:'post',
+                //         				 dataType:"json",
+				//
+                //                         success:function (data) {
+                //                             alert(data);
+                //                             console.log(data);
+                //         					if (data.status==true){
+				//
+                //         					    alert(data.message);
+                //         					}
+                //         					if(data.status==false){
+				//
+                //                                 alert(data.message);
+                //         					}
+                //                         }
+                //                     }
+                //                 )
+                //             })
+				//
+				//
+                // }
+            // function setup() {
+            //     $('#kt_login_signup_submit').click(function () {
+            //         setup_nickname = $("#setup_nickname").val();
+            //         setup_email = $("#setup_email").val();
+            //         setup_password = $("#setup_password").val();
+			//
+            //         $.ajax({
+            //                 url:'/identify/setup.do',
+            //                 data:{nickname:setup_nickname,email:setup_email,password:setup_password},
+            //                 type:'post',
+			// 				 dataType:"json",
+            //                 success:function (data) {
+			// 					if (data.status==true){
+			//
+			// 					    alert("注册成功");
+			// 					}
+			// 					if(data.status==false){
+			//
+            //                         alert("邮箱已被使用，请重新注册");
+			// 					}
+            //                 }
+            //             }
+            //         )
+            //     })
+			//
+            // }
 
 		</script>
 		<!--end::Global App Bundle -->
