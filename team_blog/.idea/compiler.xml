@@ -6,7 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="team_blog" />
+        <module name="blog_bean" />
+        <module name="blog_dao" />
+        <module name="blog_service" />
+        <module name="blog_web" />
       </profile>
     </annotationProcessing>
   </component>
