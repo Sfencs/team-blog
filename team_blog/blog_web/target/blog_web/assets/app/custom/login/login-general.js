@@ -89,7 +89,7 @@ var KTLoginGeneral = function() {
             if (!form.valid()) {
                 return;
             }
-            alert("kkk")
+
             var login_email = $("#login_email").val();
             var login_password = $("#login_password").val();
             $.ajax({
@@ -99,7 +99,7 @@ var KTLoginGeneral = function() {
                     dataType:"json",
 
                     success:function (data) {
-                        alert(data);
+
                         console.log(data);
                         if (data.status==true){
 

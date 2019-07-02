@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thefifth.dao.IUserDao">
+
+    <insert id="addArticle">
+         insert into article(author_id,team_id,title,content_html,createtime,is_delete,latest_modifitime,is_common,can_modify,is_draft)
+         values (#{author_id},#{team_id},#{title},#{content_html},#{createtime},#{is_delete},#{latest_modifitime},#{is_common},#{can_modify},#{is_draft})
+     </insert>
+
+    <select id="findArticleInfo">
+     select author_id,team_id,title,createtime,latest_modifytime from article where id=#{id}
+    </select>
+
+    <update id="updateArticle">
+       update article set title=#{title}, content_html=#{content_html},latest_modifitime=#{latest_modifitime},can_modify=#{can_modify} where id=#{id};
+     </update>
+
+    <delete id="deleteArticle">
+        delete from article where id=#{id}
+    </delete>
+</mapper>
